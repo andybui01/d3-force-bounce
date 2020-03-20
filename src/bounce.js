@@ -82,8 +82,8 @@ export default function() {
             } else {
                 // Apply momentum conservation equation with coefficient of restitution (elasticity)
                 return {
-                    a: (elasticity*mb*(vb-va) + ma*va + mb*vb),
-                    b: (elasticity*ma*(va-vb) + ma*va + mb*vb)
+                    a: (elasticity*mb*(vb-va) + ma*va + mb*vb) / (ma+mb),
+                    b: (elasticity*ma*(va-vb) + ma*va + mb*vb) / (ma+mb)
                 }
             }
 
