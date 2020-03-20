@@ -74,8 +74,8 @@ export default function() {
         function getAfterImpactVelocities(ma, mb, va, vb, elasticity = 1) {
             // Apply momentum conservation equation with coefficient of restitution (elasticity)
             return {
-                a: (elasticity*mb*(vb-va) + ma*va + mb*vb) / (ma+mb),
-                b: (elasticity*ma*(va-vb) + ma*va + mb*vb) / (ma+mb)
+                a: (va != 0)?(elasticity*mb*(vb-va) + ma*va + mb*vb) / (ma+mb): 0,
+                b: (vb != 0)?(elasticity*ma*(va-vb) + ma*va + mb*vb) / (ma+mb): 0
             }
         }
 
