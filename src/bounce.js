@@ -72,22 +72,18 @@ export default function() {
         //
 
         function getAfterImpactVelocities(ma, mb, va, vb, elasticity = 1) {
-            
-            // If one of the nodes is an anchor point.
+            // Apply momentum conservation equation with coefficient of restitution (elasticity)
             if (va == 0 || vb == 0) {
                 return {
-                    a: (va == 0) ? 0: va,
-                    b: (vb == 0) ? 0: vb
+                    a: (va == 0) ? 0 : -va,
+                    b: (vb == 0) ? 0 : -vb
                 }
             } else {
-                // Apply momentum conservation equation with coefficient of restitution (elasticity)
                 return {
-                    a: (elasticity*mb*(vb-va) + ma*va + mb*vb) / (ma+mb),
-                    b: (elasticity*ma*(va-vb) + ma*va + mb*vb) / (ma+mb)
-                }
+                    a: (elasticity * mb * (vb - va) + ma * va + mb * vb) / (ma + mb),
+                    b: (elasticity * ma * (va - vb) + ma * va + mb * vb) / (ma + mb)
+                };
             }
-
-            
         }
 
         function rotatePnt({x, y}, a) {
